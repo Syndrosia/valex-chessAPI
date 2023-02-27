@@ -13,18 +13,21 @@ turn = "white" #prerequisitories
 
 for i in range(99):
    if turn == "white":
-      piece, position, sep, posx, txp  = "null", "null", 0, 0, 0
+      wmove = input("where and what do you want to move: ")
+      position, sep, posx, txp = "null", 0, 0, 0
       desposfre, desposcur, desocupiece, desocupos = False, "", "", "" 
       turn = "black" # turn switcher
-      wmove = input("where and what do you want to move: ")
       # extractor     
       for k in range(len(wmove)):
          if wmove[k] == ">":
             sep = k; break
-      piece, position = wmove[0:sep], wmove[sep + 1:len(wmove)]
+      piece = wmove[0:sep] 
+      for j in range(len(board)):
+         if board[j][1] == piece:
+            position = board[j][0] #c
       for t in range(len(board)):
          if board[t][0] == position:
-            if board[t][1] == "":
+            if board[t + 1][1] == "": # fault
                desposfre, txp = True, t; break
             else: desposcur = board[t][1]
       for h in range(len(desposcur)):
@@ -33,10 +36,13 @@ for i in range(99):
                sep = k; break
       descupiece, descupos = wmove[0:sep], wmove[sep + 1:len(wmove)]
       if desposfre == True:
+         print(int(position[1]) + 1, "int(position[1]) + 1")
+         print(piece.split("_")[1])
+         print(int(board[txp][0][1]), "int(board[txp][0][1])")
          if piece.split("_")[1] == "p":
-            if int(board[txp][0][1]) <= int(board[txp][0][1]) + 1:  
-               board[txp - 1][1], board[txp][1] = "", piece # -1 offset for valid move
-            else: print("cant move here")
+            if int(board[txp][0][1]) <= int(position[1]) + 1:  
+               board[txp][1], board[txp + 1][1] = "", piece # -1 offset for valid move
+            else: print("no")
       print(board)
 
    # elif turn == "black":
