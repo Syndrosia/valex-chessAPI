@@ -36,9 +36,6 @@ for i in range(99):
                sep = k; break
       descupiece, descupos = wmove[0:sep], wmove[sep + 1:len(wmove)]
       if desposfre == True:
-         print(int(position[1]) + 1, "int(position[1]) + 1")
-         print(piece.split("_")[1])
-         print(int(board[txp][0][1]), "int(board[txp][0][1])")
          if piece.split("_")[1] == "p":
             if int(board[txp][0][1]) <= int(position[1]) + 1:  
                board[txp][1], board[txp + 1][1] = "", piece # -1 offset for valid move
