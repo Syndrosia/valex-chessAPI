@@ -37,8 +37,9 @@ for i in range(99):
       descupiece, descupos = wmove[0:sep], wmove[sep + 1:len(wmove)]
       if desposfre == True:
          if piece.split("_")[1] == "p":
-            if int(board[txp][0][1]) <= int(position[1]) + 1:  
-               board[txp][1], board[txp + 1][1] = "", piece # -1 offset for valid move
+            if int(board[txp][0][1]) <= int(position[1]) + 1: # y check
+               if board[txp][0][0] == position[0] and not board[txp + 1][1] != "" and not board[txp - 1][1] != "": # x check 
+                  board[txp][1], board[txp + 1][1] = "", piece # -1 offset for valid move
             else: print("no")
       print(board)
 
